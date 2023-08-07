@@ -23,7 +23,30 @@ add_css <- function(){
     list('h4, h5, h6',
          c('font-size'),
          c('12')),
+    list('tabset ul',
+         c('font-family', 'list-style-type', 'margin',
+           'padding', 'overflow', 'background-color'),
+         c('Fira mono', 'none', '0', '0', 'hidden', 'white')),
+    list('tabset ul li a',
+         c('float'),
+         c('left')),
+    list('tabset ul li a',
+         c('display', 'color', 'text-align','padding', 'background-color'),
+         c('block', 'grey', 'center', '14px 16px', 'white')),
+    list('nav li.active a',
+         c('baclground-color', 'color'),
+         c('#23BCED', 'white')),
+    list('nav li a:hover',
+         c('baclground-color', 'color'),
+         c('#23BCED', 'white')),
+    list('nav li.active a:focus',
+         c('baclground-color', 'color'),
+         c('#23BCED', 'white')),
+    list('nav li.active a:hover',
+         c('baclground-color', 'color'),
+         c('#23BCED', 'white')),
     file = 'style.css'
-    )
+  )
 }
+
 
