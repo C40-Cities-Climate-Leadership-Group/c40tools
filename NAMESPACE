@@ -3,6 +3,7 @@
 export(add_css)
 export(c40_colors)
 export(c40_pallets)
+export(clean_text)
 export(get_dw_connection)
 export(get_dw_db_example)
 export(scale_color_c40)
