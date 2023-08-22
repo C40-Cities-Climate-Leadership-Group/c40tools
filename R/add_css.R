@@ -8,9 +8,18 @@
 add_css <- function(){
 
   tableHTML::make_css(
+    list('html',
+         c('scroll-behavior'),
+         c('smooth')),
+    list('*',
+         c('font-family'),
+         c('Fira mono')),
     list('body',
-         c('font-family', 'font-size'),
-         c('Fira mono', '10pt')),
+         c('font-size', 'width', 'border', 'margin-left', 'line-height', 'text-align', 'text-justify'),
+         c('12pt', '1000px', '5px solid black', '190px', '25px', 'justify', 'inter-word')),
+    list('p',
+         c('width', 'max-width'),
+         c('900px', '900px')),
     list('h1',
          c('font-size'),
          c('24')),
