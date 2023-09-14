@@ -7,7 +7,7 @@
 c40_pallets(palette = "qualitative", reverse = FALSE, ...)
 }
 \arguments{
-\item{palette}{Name of the color pallet. The available color pallets can be viewed with `available_pallets()`}
+\item{palette}{Name of the color pallet. The available color pallets can be viewed with `available_pallets()`. If not, they are 'qualitative', 'sequential', 'dicotomic', 'divergent'}
 
 \item{reverse}{if *TRUE* returns inverted color pallet}
 

@@ -1,6 +1,6 @@
 #' Get the C40 color pallets
 #'
-#' @param palette Name of the color pallet. The available color pallets can be viewed with `available_pallets()`
+#' @param palette Name of the color pallet. The available color pallets can be viewed with `available_pallets()`. If not, they are 'qualitative', 'sequential', 'dicotomic', 'divergent'
 #' @param reverse if *TRUE* returns inverted color pallet
 #' @param ... Aditional arguments to define with colorRampPalette()
 #' @return

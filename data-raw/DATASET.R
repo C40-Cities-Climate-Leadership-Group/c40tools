@@ -8,7 +8,7 @@ available_colors <- c(
   `violet`   = "#8d77c8",
   `red`      = "#ff614a",
   `dark_red` = "#d4444d"
-  )
+)
 
 
 
@@ -18,8 +18,8 @@ available_colors <- c(
 available_pallets <- list(
 
   `qualitative` = c("#03c245", "#23BCED", "#ff614a", "#8d77c8", "#fed939"),
-  `sequential`  = c("#03c245", "#23BCED"),
+  `sequential`  = c("#03c245", "#23BCED","#8d77c8", "#fed939"),
   `dicotomic`  = c("#23BCED", "#03c245"),
-  `divergent`  = c("#ff614a", "#AAAAAA", "#23BCED"))
+  `divergent`  = c("#ff614a", "#AAAAAA", "#03c245"))
 
 usethis::use_data(available_colors, available_pallets, overwrite = TRUE, internal = TRUE)
