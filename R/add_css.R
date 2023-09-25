@@ -7,6 +7,14 @@
 #' add_css()
 add_css <- function(){
 
+  if(!dir.exists('html_style')){
+
+    dir.create('html_style')
+
+    cat("A html_style folder has been created")
+
+  }
+
   tableHTML::make_css(
     list('html',
          c('scroll-behavior'),
@@ -21,11 +29,11 @@ add_css <- function(){
          c('width', 'max-width'),
          c('900px', '900px')),
     list('h1',
-         c('font-size'),
-         c('24')),
+         c('font-size', 'color'),
+         c('24', '#23BCED')),
     list('h2',
-         c('font-size'),
-         c('18')),
+         c('font-size', 'color'),
+         c('18', '#23BCED')),
     list('h3',
          c('font-size'),
          c('14')),
@@ -54,8 +62,10 @@ add_css <- function(){
     list('nav li.active a:hover',
          c('baclground-color', 'color'),
          c('#23BCED', 'white')),
-    file = 'style.css'
+    file = 'html_style/style.css'
   )
+
+  file.edit("html_style/style.css")
 }
 
 
