@@ -7,7 +7,7 @@
 #' con <- get_dw_connection()
 #'
 #' df_targets <- dplyr::tbl(con,
-#'                   dplyr::sql("
+#'                   dbplyr::sql("
 #'                        SELECT * FROM public.fact_city_emission_targets
 #'                        ")) |>
 #'   dplyr::collect()

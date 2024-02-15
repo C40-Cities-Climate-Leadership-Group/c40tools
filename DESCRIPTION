@@ -20,7 +20,10 @@ Imports:
     RPostgres,
     sysfonts,
     tableHTML,
-    dplyr
+    dplyr,
+    stringr,
+    tibble,
+    dbplyr
 Suggest:
     testthat (>= 3.0.0)
 URL: https://github.com/ptiscornia/c40tools
