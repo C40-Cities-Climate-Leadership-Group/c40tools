@@ -10,8 +10,12 @@
 get_googledrive_path <- function(){
 
   user <- stringr::str_remove(path.expand("~"), "/Users/")
+  user_email_path <- paste0(path.expand("~"), "/Library/CloudStorage/")
 
-  googe_drive_path <- glue::glue(path.expand("~/Library/CloudStorage/GoogleDrive-{user}@c40.org/"))
+  user_email_name <- stringr::str_extract(list.files(user_email_path), "(?<=-)[^@]+(?=@)")
+
+  googe_drive_path <- glue::glue(path.expand("~/Library/CloudStorage/GoogleDrive-{user_email_name}@c40.org/"))
 
   return(googe_drive_path)
 }
+
