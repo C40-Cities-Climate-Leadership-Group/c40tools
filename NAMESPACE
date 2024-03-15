@@ -3,6 +3,7 @@
 export(add_css)
 export(c40_colors)
 export(c40_pallets)
+export(calc_ghg)
 export(clean_text)
 export(get_c40cities)
 export(get_dw_connection)
