@@ -5,22 +5,22 @@
 #' @export
 #'
 #' @examples
-#' df_ghg_emissions <- get_ghg_emissions(city = c("Oslo", "Copenhagen", "Stockholm"),
+#' df_ghg_emissions <- calc_ghg(city = c("Oslo", "Copenhagen", "Stockholm"),
 #'                                       year = 2000:2023,
 #'                                       source = "both")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##                              Get GHG emissions                           ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-calc_ghg <- function(city = "all", year, source = "both"){
+calc_ghg <- function(city = "all", year = 2000:2023, source = "both"){
 
   # Check the source reference
   assertthat::assert_that(source %in% c("both", "inventory", "modelled"),
                           msg = "Make sure that you are choosing one of these options: 'both', 'inventory', 'modelled'")
 
   # Extract all cities available
-  all_cities <- get_c40cities() |>
+  all_cities <- c40tools::get_c40cities() |>
     dplyr::select(2) |>
-    pull()
+    dplyr::pull()
 
   # Define year parameter
   var_year <- year
@@ -49,7 +49,7 @@ calc_ghg <- function(city = "all", year, source = "both"){
 
   #........................Inventory figures.......................
   ### Get all inventories dataset from DW
-  df_ghg_inventories_inventory <- dplyrtbl(
+  df_ghg_inventories_inventory <- dplyr::tbl(
     con,
     dbplyr::sql(
       glue::glue_sql(
@@ -162,23 +162,27 @@ calc_ghg <- function(city = "all", year, source = "both"){
 
   if(source == "inventory"){
 
-    df_ghg_inventories_inventory <- df_ghg_inventories_inventory |>
+    df_output <- df_ghg_inventories_inventory |>
       dplyr::arrange(city, year)
-    return(df_ghg_inventories_inventory)
 
-  } else if(source == "modelled"){
+  }
 
-    df_ghg_inventories_modelled <- df_ghg_inventories_modelled |>
+  if(source == "modelled"){
+
+    df_output <- df_ghg_inventories_modelled |>
       dplyr::arrange(city, year)
-    return(df_ghg_inventories_modelled)
 
-  } else if(source == "both"){
+  }
+
+  if(source == "both"){
 
     df_output <- df_ghg_inventories_inventory |>
       dplyr::right_join(df_ghg_inventories_modelled) |>
       dplyr::select(city, country, year, emissions_tco2e_inventory, emissions_tco2e_modelled) |>
       dplyr::arrange(city, year)
 
-    return(df_output)
   }
+
+  return(df_output)
 }
+

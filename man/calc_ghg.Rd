@@ -4,7 +4,7 @@
 \alias{calc_ghg}
 \title{Obtain GHG inventory and modelled emissions}
 \usage{
-calc_ghg(city = "all", year, source = "both")
+calc_ghg(city = "all", year = 2000:2023, source = "both")
 }
 \value{
 A dataset with the emissions figures
@@ -13,7 +13,7 @@ A dataset with the emissions figures
 Obtain GHG inventory and modelled emissions
 }
 \examples{
-df_ghg_emissions <- get_ghg_emissions(city = c("Oslo", "Copenhagen", "Stockholm"),
+df_ghg_emissions <- calc_ghg(city = c("Oslo", "Copenhagen", "Stockholm"),
                                       year = 2000:2023,
                                       source = "both")
 }
