@@ -11,18 +11,19 @@
 #'
 check_city_names <- function(df, city_var_name, clean_city_name = FALSE, want_cityid = FALSE){
 
+  con <- c40tools::get_dw_connection()
+
+  df_cities <- dplyr::tbl(con,
+                          DBI::Id(schema = "public",
+                                  table = "dim_cities")) |>
+    dplyr::filter(current_member == TRUE) |>
+    dplyr::select(city, city_id) |>
+    dplyr::collect()
+
+
   if(clean_city_name == FALSE){
     # Set the city columna name as city
     colnames(df[city_var_name]) <- "city"
-
-    con <- c40tools::get_dw_connection()
-
-    df_cities <- dplyr::tbl(con,
-                            DBI::Id(schema = "public",
-                                    table = "dim_cities")) |>
-      dplyr::filter(current_member == TRUE) |>
-      dplyr::select(city) |>
-      dplyr::collect()
 
     df_1 <- sort(unique(df_cities$city))
 
