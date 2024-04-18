@@ -27,7 +27,7 @@ check_city_names <- function(df, city_var_name, clean_city_name = FALSE, want_ci
 
     df_1 <- sort(unique(df_cities$city))
 
-    df_2 <- sort(unique(df_aq_mortality$city))
+    df_2 <- sort(unique(df$city))
 
     waldo::compare(df_1, df_2, quote_strings = FALSE)
   }
