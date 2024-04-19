@@ -20,19 +20,21 @@ check_city_names <- function(df, city_var_name, clean_city_name = FALSE, want_ci
     dplyr::select(city, city_id) |>
     dplyr::collect()
 
+  # Set the city columna name as city
+  city_col_position <- which(colnames(df)==city_var_name)
+  colnames(df)[city_col_position] <- "city"
+
 
   if(clean_city_name == FALSE){
-    # Set the city columna name as city
-    colnames(df[city_var_name]) <- "city"
 
     df_1 <- sort(unique(df_cities$city))
-
     df_2 <- sort(unique(df$city))
 
-    waldo::compare(df_1, df_2, quote_strings = FALSE)
-  }
+    city_names_check <- waldo::compare(df_1, df_2)
 
-  if(clean_city_name == TRUE){
+    return(city_names_check)
+
+  } else {
 
     df <- df |>
       mutate(city_stage1 = tolower(c40tools::clean_text(city)),
@@ -46,18 +48,17 @@ check_city_names <- function(df, city_var_name, clean_city_name = FALSE, want_ci
       select(-city, -city_stage1) |>
       relocate(city = new_city_name)
 
-  }
+    if(want_cityid == FALSE){
 
-  if(want_cityid == FALSE){
+      return(df)
 
-    return(df)
+    } else {
 
-  } else {
+      df <- df |>
+        left_join(df_cities) |>
+        relocate(city_id)
 
-    df <- df |>
-      left_join(df_cities) |>
-      relocate(city_id)
-
-    return(df)
+      return(df)
+    }
   }
 }
