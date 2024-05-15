@@ -9,10 +9,7 @@
 #' df_targets <- dplyr::tbl(con,
 #'                   dbplyr::sql("
 #'                        SELECT * FROM public.fact_city_emission_targets
-#'                        ")) |>
-#'   dplyr::collect()
-
-
+#'                        "))
 get_dw_connection <- function() {
 
   # Check that you have the proper keys defined on the .Renviron file

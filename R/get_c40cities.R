@@ -1,5 +1,6 @@
 #' Get current and past C40 cities
 #'
+#' @param year TRUE as default, brings only current C40 cities. FALSE brings all C40 cities hosted in the Data Warehouse
 #' @return
 #' A dataset with the City, City id and if it is currently part of C40
 #' @export

@@ -6,6 +6,13 @@
 \usage{
 calc_ghg(city = "all", year = 2000:2023, source = "both")
 }
+\arguments{
+\item{city}{City from which the data is requested. "all" is the default option, which brings data from all C40 cities}
+
+\item{year}{year of the data}
+
+\item{source}{Options are inventory: brings only inventory values; modelled: brings modelled ghg emissions values and both -default-: brings both inventory and modelled values.}
+}
 \value{
 A dataset with the emissions figures
 }
@@ -14,6 +21,6 @@ Obtain GHG inventory and modelled emissions
 }
 \examples{
 df_ghg_emissions <- calc_ghg(city = c("Oslo", "Copenhagen", "Stockholm"),
-                                      year = 2000:2023,
-                                      source = "both")
+                             year = 2000:2023,
+                             source = "both")
 }

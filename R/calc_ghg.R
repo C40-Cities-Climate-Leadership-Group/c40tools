@@ -1,13 +1,16 @@
 #' Obtain GHG inventory and modelled emissions
 #'
+#' @param city City from which the data is requested. "all" is the default option, which brings data from all C40 cities
+#' @param year year of the data
+#' @param source Options are inventory: brings only inventory values; modelled: brings modelled ghg emissions values and both -default-: brings both inventory and modelled values.
 #' @return
 #' A dataset with the emissions figures
 #' @export
 #'
 #' @examples
 #' df_ghg_emissions <- calc_ghg(city = c("Oslo", "Copenhagen", "Stockholm"),
-#'                                       year = 2000:2023,
-#'                                       source = "both")
+#'                              year = 2000:2023,
+#'                              source = "both")
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##                              Get GHG emissions                           ----
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -51,7 +54,7 @@ calc_ghg <- function(city = "all", year = 2000:2023, source = "both"){
   ### Get all inventories dataset from DW
   df_ghg_inventories_inventory <- dplyr::tbl(
     con,
-    dbplyr::sql(
+    dplyr::sql(
       glue::glue_sql(
         "
       WITH basic AS (SELECT city, inventory_year AS year, sum(emissions_tco2e) as emissions
@@ -122,6 +125,7 @@ calc_ghg <- function(city = "all", year = 2000:2023, source = "both"){
             LEFT JOIN quito t8 USING (city, year)
             WHERE year IN ({vals*})
       ",
+        .con = con,
         vals = var_year)
     )
   ) |>
@@ -144,7 +148,7 @@ calc_ghg <- function(city = "all", year = 2000:2023, source = "both"){
       con,
       dbplyr::sql(
         glue::glue_sql(
-          "
+                       "
       SELECT t2.city_id, t2.city, t2.country, year, emissions_tco2e as emissions_tco2e_modelled
       FROM public.fact_city_modelled_emissions t1
       LEFT JOIN public.dim_cities t2
@@ -152,7 +156,8 @@ calc_ghg <- function(city = "all", year = 2000:2023, source = "both"){
       WHERE t1.created_at = (SELECT MAX(created_at) FROM public.fact_city_modelled_emissions)
       and year IN ({vals*})
       ",
-          vals = var_year)
+                       .con = con,
+                       vals = var_year)
       )
     ) |>
       dplyr::filter(city %in% var_cities) |>

@@ -6,6 +6,9 @@
 \usage{
 get_c40cities(current = TRUE)
 }
+\arguments{
+\item{year}{TRUE as default, brings only current C40 cities. FALSE brings all C40 cities hosted in the Data Warehouse}
+}
 \value{
 A dataset with the City, City id and if it is currently part of C40
 }
