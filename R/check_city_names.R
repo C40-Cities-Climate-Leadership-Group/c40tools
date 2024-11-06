@@ -8,7 +8,6 @@
 #' @return If clean_city_name = FALSE, returns just comparisson between the current city column names and the C40 official city names in the Data Warehouse.
 #' If clean_city_name = TRUE, returns a dataframe with the correct and official city names
 #' @export
-#'
 check_city_names <- function(df, city_var_name, clean_city_name = FALSE, want_cityid = FALSE){
 
   con <- c40tools::get_dw_connection()
@@ -61,5 +60,83 @@ check_city_names <- function(df, city_var_name, clean_city_name = FALSE, want_ci
 
       return(df)
     }
+  }
+}
+
+
+
+
+
+# Function to find the closest match with a distance threshold
+find_closest_match <- function(city, valid_cities, threshold = 0.2) {
+
+  distances <- stringdist::stringdist(city, valid_cities, method = "jw")
+
+  min_distance <- min(distances)
+
+  if (min_distance < threshold) {
+
+    closest_match <- valid_cities[which.min(distances)]
+
+  } else {
+
+    closest_match <- NA  # Or keep the original city if preferred: closest_match <- city
+
+  }
+  return(closest_match)
+}
+
+# Function to check if any character in city matches with any character in valid cities
+check_character_match <- function(city, valid_cities) {
+
+  any(sapply(valid_cities, function(valid_city) {
+
+    any(strsplit(city, NULL)[[1]] %in% strsplit(valid_city, NULL)[[1]])
+
+  }))
+}
+
+#' Clean and correct city names
+#'
+#' @param df dataframe with the city column name
+#' @param city_column_name name of the column wich has the city names
+#' @param valid_cities C40 official City names
+#' @param want_cityid TRUE/FALSE if you want to return a dataframe with a city_id column, in order to link it with the Data Warehouse. Default as FALSE
+#' @param threshold matching level
+#'
+#' @return If clean_city_name = FALSE, returns just comparisson between the current city column names and the C40 official city names in the Data Warehouse.
+#' If clean_city_name = TRUE, returns a dataframe with the correct and official city names
+#' @export
+check_and_correct_cities <- function(df, city_column_name, valid_cities, want_cityid = TRUE, threshold = 0.2) {
+
+  df <- df %>%
+    filter(sapply({{ city_column_name }}, check_character_match, valid_cities = valid_cities)) %>%
+    mutate(
+      # Clean the city names
+      {{ city_column_name }} := str_remove_all({{ city_column_name }}, "District of |City of|City District Government|Distrito Capital|Ville de"),
+      {{ city_column_name }} := str_remove_all({{ city_column_name }}, "Metropolitan Administration|City Administration|Metropolitan Municipality"),
+      {{ city_column_name }} := str_remove_all({{ city_column_name }}, "Distrito Metropolitano de|Municipality|Government|Metropolitan Area"),
+      {{ city_column_name }} := str_remove_all({{ city_column_name }}, "Prefeitura de|Prefeitura do|Region Metropolitana|The Local Government"),
+      {{ city_column_name }} := str_remove_all({{ city_column_name }}, "Special Administrative Region|Greater|Authority|of|Región Metropolitana de"),
+      {{ city_column_name }} := str_remove_all({{ city_column_name }}, "Metropolitan|The Local  of |of|Municipal People's|Special Administrative Region"),
+      {{ city_column_name }} := str_remove_all({{ city_column_name }}, "The Local"),
+      {{ city_column_name }} := str_trim({{ city_column_name }}),
+      # Correct the city names
+      corrected_city = sapply({{ city_column_name }}, find_closest_match, valid_cities = valid_cities, threshold = threshold),
+      corrected_city = case_when(str_detect(corrected_city, "eThekwini") ~ "Durban (eThekwini)",
+                                 .default = corrected_city)
+    )
+
+  if(want_cityid == TRUE){
+
+    df <- df |>
+      left_join(c40tools::get_c40cities(),
+                by = c("corrected_city" = "city")) |>
+      relocate(city_id, city)
+
+    return(df)
+
+  } else {
+    return(df)
   }
 }
