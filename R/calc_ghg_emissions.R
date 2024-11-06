@@ -200,7 +200,7 @@ calc_ghg_emissions <- function(region = "all", sum_by = "city") {
         gap_percapita <= 10 ~ c40_colors("green"),
         gap_percapita > 10 & gap_percapita <= 20 ~ c40_colors("yellow"),
         TRUE ~ c40_colors("red"))) |>
-    dplyr::relocate("region", .after = "city")
+    dplyr::relocate("region")
 
 
   if (sum_by == "city") {
