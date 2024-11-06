@@ -1,7 +1,7 @@
 Package: c40tools
 Type: Package
 Title: C40 Cities Toolset
-Version: 0.0.0.9010
+Version: 1.0.1.9000
 Authors@R: person("Pablo", "Tiscornia", , "ptiscornia@turismo.gob.ar", role = c("aut", "cre"))
 Description: C40 set of tools for working with data and reporting in R
 License: GPL (>= 3)

@@ -64,6 +64,9 @@ For the development version
 # if you do not have devtools installed
 
 devtools::install_github("C40-Cities-Climate-Leadership-Group/c40tools")
+
+# or
+remotes::install_github("C40-Cities-Climate-Leadership-Group/c40tools")
 ```
 
 ## How to use
@@ -74,7 +77,7 @@ First we need to configure the keys necessary for the connection to the Data War
 
 ```
 DATAWAREHOUSE_HOST=""
-DATAWAREHOUSE_USER=""
+DATAWAREHOUSE_USER="c40_user"
 DATAWAREHOUSE_PASSWORD=""
 ```
 

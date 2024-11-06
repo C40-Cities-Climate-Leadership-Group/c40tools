@@ -1,20 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
-# c40tools <img src='docs/logo.png' align="right" height="200" style="float:right; height:200px;" />
+# eph <img src='docs/logo.png' align="right" height="200" style="float:right; height:200px;" />
 
 <!-- badges: start -->
 
-
+[![R build
+status](https://github.com/C40-Cities-Climate-Leadership-Group/c40tools/workflows/R-CMD-check/badge.svg)](https://github.com/C40-Cities-Climate-Leadership-Group/c40tools/actions)
 [![Coverage
 status](https://codecov.io/gh/C40-Cities-Climate-Leadership-Group/c40tools/branch/master/graph/badge.svg)](https://app.codecov.io/gh/C40-Cities-Climate-Leadership-Group/c40tools?branch=master)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/c40tools)](https://cran.r-project.org/package=c40tools)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/c40tools?color=blue)](https://cran.r-project.org/package=c40tools)
 [![](http://cranlogs.r-pkg.org/badges/last-month/c40tools?color=blue)](https://cran.r-project.org/package=c40tools)
-
-<br><br>
 
 <!-- badges: end -->
 
@@ -61,6 +59,9 @@ For the development version
 # if you do not have devtools installed
 
 devtools::install_github("C40-Cities-Climate-Leadership-Group/c40tools")
+
+# or
+remotes::install_github("C40-Cities-Climate-Leadership-Group/c40tools")
 ```
 
 ## How to use
@@ -74,14 +75,13 @@ them in the .Renviron file, which can be edited with the
 file will be opened and the following variables must be defined in it:
 
     DATAWAREHOUSE_HOST=""
-    DATAWAREHOUSE_USER=""
+    DATAWAREHOUSE_USER="c40_user"
     DATAWAREHOUSE_PASSWORD=""
 
 Once set, we will have the connection enabled to simply run:
 
 ``` r
 library(c40tools)
-#> Loading required package: mgsub
 
 con <- get_dw_connection()
 ```

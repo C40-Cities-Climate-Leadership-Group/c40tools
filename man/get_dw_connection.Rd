@@ -2,21 +2,35 @@
 % Please edit documentation in R/get_dw_connection.R
 \name{get_dw_connection}
 \alias{get_dw_connection}
-\title{Get connected to the C40 Data Warehouse}
+\title{Establish a Connection to the C40 Data Warehouse}
 \usage{
 get_dw_connection()
 }
 \value{
-a RPostgres connection
+A `DBI` connection object to the C40 Data Warehouse.
 }
 \description{
-Get connected to the C40 Data Warehouse
+This function establishes a connection to the C40 Data Warehouse using environment variables
+for the database host, user, and password. The connection is established through the
+`RPostgres` package.
+}
+\details{
+The function requires the following environment variables to be defined in your `.Renviron` file:
+* `DATAWAREHOUSE_HOST`: Hostname of the Data Warehouse.
+* `DATAWAREHOUSE_USER`: Username for Data Warehouse authentication.
+* `DATAWAREHOUSE_PASSWORD`: Password for Data Warehouse authentication.
+
+If any of these environment variables are missing, the function will raise an error.
 }
 \examples{
+# Establish a connection to the data warehouse
 con <- get_dw_connection()
 
+# Example query to fetch data
 df_targets <- dplyr::tbl(con,
                   dbplyr::sql("
                        SELECT * FROM public.fact_city_emission_targets
-                       "))
+                       ")) |>
+              dplyr::collect()
+
 }
