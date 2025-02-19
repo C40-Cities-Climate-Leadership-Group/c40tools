@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# eph <img src='docs/logo.png' align="right" height="200" style="float:right; height:200px;" />
+# C40 <img src='docs/logo.png' align="right" height="200" style="float:right; height:200px;" />
 
 <!-- badges: start -->
 
