@@ -46,7 +46,7 @@ check_city_names <- function(df, city_var_name, clean_city_name = FALSE, want_ci
                                        city_stage1 == "Sú Paulo" ~ "São Paulo",
                                        .default = city)) |>
       select(-city, -city_stage1) |>
-      relocate(city = new_city_name)
+      dplyr::relocate(city = new_city_name)
 
     if(want_cityid == FALSE){
 

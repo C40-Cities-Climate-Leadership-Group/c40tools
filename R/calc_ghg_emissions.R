@@ -132,9 +132,9 @@ calc_ghg_emissions <- function(region = "all", sum_by = "city") {
     )
     SELECT t.city, t.city_id, t.region, t.year,
            t.emissions_tco2e AS actual_emissions_tco2e,
-           ROUND((t.emissions_tco2e / t.population)::numeric, 2) AS actual_emissions_per_capita_tco2e,
+           ROUND((t.emissions_tco2e / t.population)::numeric, 6) AS actual_emissions_per_capita_tco2e,
            t.target_emissions_tco2e,
-           ROUND((t.target_emissions_tco2e / t.population)::numeric, 2) AS target_emissions_per_capita_tco2e,
+           ROUND((t.target_emissions_tco2e / t.population)::numeric, 6) AS target_emissions_per_capita_tco2e,
            population, dac_category
     FROM (
         SELECT t1.city, t1.city_id, t1.region, t1.year, population,
@@ -194,13 +194,12 @@ calc_ghg_emissions <- function(region = "all", sum_by = "city") {
     dplyr::mutate(
       percapita_actual = actual_emissions_tco2e / population,
       percapita_target = target_emissions_tco2e / population,
-      gap_percapita = round((percapita_actual - percapita_target) / percapita_target * 100, 1),
-      gap_absolute = round((actual_emissions_tco2e - target_emissions_tco2e) / target_emissions_tco2e * 100, 1),
+      gap_percapita = (percapita_actual - percapita_target) / percapita_target * 100,
+      gap_absolute = (actual_emissions_tco2e - target_emissions_tco2e) / target_emissions_tco2e * 100,
       gap_percapita_color = dplyr::case_when(
         gap_percapita <= 10 ~ c40_colors("green"),
         gap_percapita > 10 & gap_percapita <= 20 ~ c40_colors("yellow"),
-        TRUE ~ c40_colors("red"))) |>
-    dplyr::relocate("region")
+        TRUE ~ c40_colors("red")))
 
 
   if (sum_by == "city") {
