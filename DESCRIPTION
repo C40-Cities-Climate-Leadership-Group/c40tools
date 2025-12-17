@@ -32,3 +32,4 @@ Suggests:
     rmarkdown
 URL: https://github.com/C40-Cities-Climate-Leadership-Group/c40tools
 BugReports: https://github.com/C40-Cities-Climate-Leadership-Group/c40tools/issues
+Config/testthat/edition: 3
