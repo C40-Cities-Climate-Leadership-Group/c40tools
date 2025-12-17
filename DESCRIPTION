@@ -25,7 +25,8 @@ Imports:
     sysfonts,
     tableHTML,
     tibble,
-    waldo
+    waldo,
+    yaml
 Suggests:
     testthat (>= 3.0.0),
     knitr,

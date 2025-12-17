@@ -61,8 +61,9 @@
 ## Brand Guidelines Reference
 
 The official C40 brand guidelines are located at:
-- **Path:** `inst/brand/C40 Brand Guidelines September 2025.pdf`
-- **Access in R:** `system.file("brand", "C40 Brand Guidelines September 2025.pdf", package = "c40tools")`
+- **Path:** `inst/brand/c40-brand-guidelines-2025-09.pdf`
+- **Access in R:** `system.file("brand", "c40-brand-guidelines-2025-09.pdf", package = "c40tools")`
+- **Brand YAML:** `inst/brand/_brand.yml` - Machine-readable brand specification
 
 ### When Working on Colour/Style Functions
 

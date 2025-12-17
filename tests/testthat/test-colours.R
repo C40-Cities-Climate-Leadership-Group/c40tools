@@ -1,39 +1,42 @@
 # Tests for C40 colour functions
+# Updated for September 2025 brand guidelines
 
 test_that("c40_colors returns correct hex values for named colours", {
- expect_equal(c40_colors("green"), "#03c245")
- expect_equal(c40_colors("blue"), "#23BCED")
- expect_equal(c40_colors("yellow"), "#fed939")
- expect_equal(c40_colors("violet"), "#8d77c8")
- expect_equal(c40_colors("red"), "#ff614a")
- expect_equal(c40_colors("dark_red"), "#d4444d")
+  # Core palette colours (September 2025)
+  expect_equal(c40_colors("yellow"), "#FED939")
+  expect_equal(c40_colors("blue"), "#23BCED")
+  expect_equal(c40_colors("navy"), "#053D6B")
+  expect_equal(c40_colors("green"), "#03C245")
+  expect_equal(c40_colors("forest"), "#056608")
+  expect_equal(c40_colors("red"), "#FF614A")
+  expect_equal(c40_colors("purple"), "#7E65C1")
 })
 
 test_that("c40_colors returns all colours when called without arguments", {
- all_colours <- c40_colors()
- expect_length(all_colours, 6)
- expect_type(all_colours, "character")
+  all_colours <- c40_colors()
+  expect_length(all_colours, 7)  # Updated: 7 core colours
+  expect_type(all_colours, "character")
 })
 
 test_that("c40_colors returns named vector when name = TRUE", {
- named_colour <- c40_colors("green", name = TRUE)
- expect_named(named_colour, "green")
- expect_equal(unname(named_colour), "#03c245")
+  named_colour <- c40_colors("green", name = TRUE)
+  expect_named(named_colour, "green")
+  expect_equal(unname(named_colour), "#03C245")
 })
 
 test_that("c40_colors returns unnamed vector when name = FALSE", {
- unnamed_colour <- c40_colors("green", name = FALSE)
- expect_null(names(unnamed_colour))
+  unnamed_colour <- c40_colors("green", name = FALSE)
+  expect_null(names(unnamed_colour))
 })
 
 test_that("c40_colors validates colour names", {
- expect_error(c40_colors("invalid_colour"))
- expect_error(c40_colors("purple"))
+  expect_error(c40_colors("invalid_colour"))
+  expect_error(c40_colors("not_a_colour"))
 })
 
 test_that("c40_colors accepts numeric indices", {
- expect_equal(c40_colors(1), c40_colors("green"))
- expect_equal(c40_colors(2), c40_colors("blue"))
+  expect_equal(c40_colors(1), c40_colors("yellow"))
+  expect_equal(c40_colors(2), c40_colors("blue"))
 })
 
 test_that("c40_pallets returns a function", {

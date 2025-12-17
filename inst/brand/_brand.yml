@@ -1,0 +1,403 @@
+# C40 Cities Brand Configuration
+# Based on C40 Brand Guidelines September 2025
+# This file follows Quarto's brand.yml specification for seamless integration
+# with Quarto documents, Shiny applications, and R visualisations.
+#
+# Usage in R:
+#   c40_brand()           - Get full brand configuration
+#   c40_brand("colours")  - Get colour palette
+#   c40_brand("fonts")    - Get typography settings
+#
+# Usage in Quarto:
+#   brand: inst/brand/_brand.yml
+#
+# Reference: https://posit-dev.github.io/brand-yml/
+
+meta:
+  name: C40 Cities
+  version: "2025.09"
+  updated: "2025-09-01"
+  contact: abrady@c40.org
+  guidelines_source: "C40 Brand Guidelines September 2025"
+
+# =============================================================================
+# COLOUR PALETTE
+# =============================================================================
+# The C40 colour palette is bright and vibrant which helps convey energy and
+# enthusiasm. Updated April 2025 for improved accessibility with dark green,
+# dark blue, adjusted purple, and lighter tints.
+
+color:
+  palette:
+    # Core palette - Primary brand colours
+    yellow:
+      core: "#FED939"
+      mid: "#FEF1B8"
+      light: "#FFFAE8"
+      rgb: [254, 217, 57]
+      cmyk: [0, 19, 90, 0]
+      pantone: "123 C"
+
+    blue:
+      core: "#23BCED"
+      mid: "#B0E7F8"
+      light: "#E5F7FC"
+      rgb: [35, 188, 237]
+      cmyk: [69, 0, 1, 0]
+      pantone: "311 C"
+
+    navy:
+      core: "#053D6B"
+      rgb: [5, 61, 107]
+      cmyk: [100, 78, 32, 19]
+      pantone: "7694 C"
+
+    green:
+      core: "#03C245"
+      mid: "#A4E9BC"
+      light: "#EBFAF0"
+      rgb: [3, 194, 69]
+      cmyk: [73, 0, 91, 0]
+      pantone: "2256 C"
+
+    forest:
+      core: "#056608"
+      rgb: [5, 102, 8]
+      cmyk: [87, 34, 100, 28]
+      pantone: "2465 C"
+
+    red:
+      core: "#FF614A"
+      mid: "#FFC6BE"
+      light: "#F5E8E0"
+      rgb: [255, 97, 74]
+      cmyk: [0, 73, 66, 0]
+      pantone: "7416 C"
+
+    purple:
+      core: "#7E65C1"
+      mid: "#D1C8E9"
+      light: "#F0EDF7"
+      rgb: [126, 101, 193]
+      cmyk: [58, 67, 0, 0]
+      pantone: "2095 C"
+
+    # Neutral colours
+    black: "#000000"
+    white: "#FFFFFF"
+
+  # Semantic colour assignments
+  primary: "#FED939"      # Yellow - main brand colour
+  secondary: "#23BCED"    # Blue
+  success: "#03C245"      # Green
+  warning: "#FF614A"      # Red
+  info: "#23BCED"         # Blue
+  danger: "#FF614A"       # Red
+
+  # Background colours (accessible with black text)
+  background:
+    light:
+      - "#FFFFFF"
+      - "#FFFAE8"   # Yellow light
+      - "#E5F7FC"   # Blue light
+      - "#EBFAF0"   # Green light
+      - "#F5E8E0"   # Red light
+      - "#F0EDF7"   # Purple light
+
+    # Background colours (accessible with white text)
+    dark:
+      - "#053D6B"   # Navy
+      - "#056608"   # Forest
+      - "#7E65C1"   # Purple
+
+  # Data visualisation palettes
+  # Use these for charts, graphs, and maps
+  dataviz:
+    # Qualitative palette - for categorical data (up to 7 categories)
+    qualitative:
+      - "#FED939"   # Yellow
+      - "#23BCED"   # Blue
+      - "#03C245"   # Green
+      - "#FF614A"   # Red
+      - "#7E65C1"   # Purple
+      - "#053D6B"   # Navy
+      - "#056608"   # Forest
+
+    # Sequential palette - for ordered data (low to high)
+    sequential:
+      blue:
+        - "#E5F7FC"
+        - "#B0E7F8"
+        - "#23BCED"
+        - "#053D6B"
+      green:
+        - "#EBFAF0"
+        - "#A4E9BC"
+        - "#03C245"
+        - "#056608"
+      yellow:
+        - "#FFFAE8"
+        - "#FEF1B8"
+        - "#FED939"
+
+    # Divergent palette - for data with meaningful midpoint
+    divergent:
+      - "#FF614A"   # Red (negative)
+      - "#FFC6BE"   # Red mid
+      - "#FFFFFF"   # White (neutral)
+      - "#A4E9BC"   # Green mid
+      - "#03C245"   # Green (positive)
+
+    # Binary/dichotomous palette
+    dichotomous:
+      - "#FF614A"   # Red (no/negative)
+      - "#03C245"   # Green (yes/positive)
+
+# =============================================================================
+# TYPOGRAPHY
+# =============================================================================
+# As of September 2025, Figtree is the official C40 font.
+# Available free from Google Fonts: https://fonts.google.com/specimen/Figtree
+
+typography:
+  fonts:
+    # Primary brand font
+    base: "Figtree"
+    headings: "Figtree"
+    monospace: "Fira Code"  # For code blocks
+
+  # Font weights
+  weights:
+    regular: 400
+    semibold: 600
+    bold: 700
+
+  # Usage guidelines
+  usage:
+    titles: "Figtree Bold"
+    subtitles: "Figtree SemiBold"
+    body: "Figtree Regular"
+    quotes: "Figtree SemiBold"
+
+  # Size recommendations (in points for print, rem for web)
+  sizes:
+    # Minimum sizes
+    body_min_pt: 10
+    heading_ratio: 1.2  # Headings should be at least 20% larger than body
+
+  # Accessibility guidelines
+  accessibility:
+    alignment: "left"           # Standard alignment (not justified)
+    centre_allowed_for:
+      - "titles"
+      - "pull-outs"
+      - "designed materials"
+    avoid:
+      - "justified text"
+      - "all caps for long text"
+      - "text over busy backgrounds"
+    case: "sentence"            # Use sentence case, not Title Case
+
+# =============================================================================
+# COLOUR ACCESSIBILITY
+# =============================================================================
+# AA accessibility standards require sufficient contrast between text and
+# background colours.
+
+accessibility:
+  # Text colour rules for backgrounds
+  text_on_background:
+    # Use black text on these backgrounds
+    black_text:
+      - "#FFFFFF"   # White
+      - "#FED939"   # Yellow
+      - "#FEF1B8"   # Yellow mid
+      - "#FFFAE8"   # Yellow light
+      - "#23BCED"   # Blue
+      - "#B0E7F8"   # Blue mid
+      - "#E5F7FC"   # Blue light
+      - "#03C245"   # Green
+      - "#A4E9BC"   # Green mid
+      - "#EBFAF0"   # Green light
+      - "#FF614A"   # Red
+      - "#FFC6BE"   # Red mid
+      - "#F5E8E0"   # Red light
+      - "#D1C8E9"   # Purple mid
+      - "#F0EDF7"   # Purple light
+
+    # Use white text on these backgrounds
+    white_text:
+      - "#053D6B"   # Navy
+      - "#056608"   # Forest
+      - "#7E65C1"   # Purple
+
+  # Colour blindness considerations
+  colour_blindness:
+    note: "Do not use colour alone to convey information"
+    recommendations:
+      - "Use shape, texture and icons in addition to colour"
+      - "Avoid red/green only distinctions"
+      - "Add labels or patterns to differentiate data"
+
+# =============================================================================
+# LOGO SPECIFICATIONS
+# =============================================================================
+
+logo:
+  description: "White square with black outline and black text"
+  minimum_size:
+    digital_px: 50
+    print_mm: 10
+
+  # Spacing: equal to distance between top of text and top outline
+  clear_space: "1x unit (text to outline distance)"
+
+  placement:
+    preferred:
+      - "bottom_right"
+      - "top_right"
+    alternative:
+      - "top_left"
+      - "bottom_left"
+      - "centre"  # For final pages and social media
+
+  # Logo files contact
+  files_contact: "abrady@c40.org"
+
+  # Do not
+  restrictions:
+    - "Do not stretch or manipulate"
+    - "Do not make white square transparent"
+    - "Do not use other colours"
+    - "Do not use other fonts"
+
+# =============================================================================
+# DESIGN SYSTEM
+# =============================================================================
+
+design:
+  # Core design principles
+  principles:
+    - "Strength"
+    - "Optimism"
+    - "Action"
+
+  # Visual elements
+  elements:
+    shapes:
+      - "squares"
+      - "rectangles"
+      - "rounded rectangles"
+      - "circles"
+      - "semi-circles"
+
+    outlines:
+      none: "No line weight"
+      thin: "Sophistication, style, refinement"
+      thick: "Friendliness, approachability"
+
+  # Key recognition elements
+  brand_recognition:
+    essential:
+      - "C40 colour palette"
+      - "Figtree typography"
+
+# =============================================================================
+# SHINY / APPLICATION DEFAULTS
+# =============================================================================
+# Recommended settings for Shiny dashboards and web applications
+
+shiny:
+  theme:
+    primary: "#FED939"
+    secondary: "#23BCED"
+    success: "#03C245"
+    danger: "#FF614A"
+    warning: "#FF614A"
+    info: "#23BCED"
+    light: "#F5E8E0"
+    dark: "#053D6B"
+
+    # Bootstrap-compatible settings
+    body_bg: "#FFFFFF"
+    body_color: "#000000"
+    headings_color: "#000000"
+    link_color: "#053D6B"
+
+    # Font settings
+    font_family_base: "Figtree, sans-serif"
+    font_family_headings: "Figtree, sans-serif"
+
+    # Border radius for rounded corners
+    border_radius: "0.25rem"
+    border_radius_lg: "0.5rem"
+
+# =============================================================================
+# QUARTO DOCUMENT DEFAULTS
+# =============================================================================
+# Settings for Quarto reports and presentations
+
+quarto:
+  format:
+    html:
+      theme:
+        light:
+          - default
+          - custom.scss
+      mainfont: "Figtree"
+      monofont: "Fira Code"
+
+    pdf:
+      mainfont: "Figtree"
+      sansfont: "Figtree"
+      monofont: "Fira Code"
+      fontsize: "11pt"
+      linkcolor: "#053D6B"
+
+    revealjs:
+      theme: default
+      logo: "logo.png"
+      footer: "C40 Cities"
+      transition: "slide"
+
+# =============================================================================
+# GGPLOT2 THEME DEFAULTS
+# =============================================================================
+# Recommended settings for ggplot2 visualisations
+
+ggplot2:
+  theme:
+    # Text elements
+    text_family: "Figtree"
+    text_colour: "#000000"
+
+    # Plot background
+    panel_background: "#FFFFFF"
+    plot_background: "#FFFFFF"
+
+    # Grid lines
+    panel_grid_major: "#E5E5E5"
+    panel_grid_minor: "transparent"
+
+    # Axis
+    axis_line_colour: "#000000"
+    axis_text_colour: "#000000"
+    axis_title_colour: "#000000"
+
+    # Legend
+    legend_background: "transparent"
+    legend_key_fill: "transparent"
+
+  # Default colour scales
+  discrete_colours:
+    - "#FED939"
+    - "#23BCED"
+    - "#03C245"
+    - "#FF614A"
+    - "#7E65C1"
+    - "#053D6B"
+    - "#056608"
+
+  continuous_colours:
+    low: "#E5F7FC"
+    high: "#053D6B"
