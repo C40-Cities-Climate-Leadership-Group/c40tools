@@ -27,8 +27,12 @@ scale_fill_c40 <- function(palette = "qualitative", discrete = TRUE, reverse = F
   pal <- c40_pallets(palette = palette, reverse = reverse)
 
   if (discrete) {
-    ggplot2::discrete_scale("fill", paste0("c40_", palette), palette = pal, ...)
+    ggplot2::discrete_scale(
+      aesthetics = "fill",
+      palette = pal,
+      ...
+    )
   } else {
-    ggplot2::scale_fill_gradientn(colors = pal(256), ...)
+    ggplot2::scale_fill_gradientn(colours = pal(256), ...)
   }
 }
