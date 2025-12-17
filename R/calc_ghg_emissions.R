@@ -58,7 +58,7 @@ calc_ghg_emissions <- function(region = "all", sum_by = "city") {
   )
   assertthat::assert_that(
     sum_by %in% c("region", "tier", "city"),
-    msg = "sum_by values must be one of these: 'region' or 'tier'"
+    msg = "sum_by values must be one of these: 'region', 'tier', or 'city'"
   )
 
   filter_region <- region

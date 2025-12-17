@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_city_names.R
 \name{check_and_correct_cities}
 \alias{check_and_correct_cities}
-\title{Clean and correct city names}
+\title{Clean and correct city names using fuzzy matching}
 \usage{
 check_and_correct_cities(
   df,
@@ -13,20 +13,30 @@ check_and_correct_cities(
 )
 }
 \arguments{
-\item{df}{dataframe with the city column name}
+\item{df}{A data frame containing a column with city names.}
 
-\item{city_column_name}{name of the column wich has the city names}
+\item{city_column_name}{Name of the column containing city names (unquoted).}
 
-\item{valid_cities}{C40 official City names}
+\item{valid_cities}{Character vector of valid C40 city names to match against.}
 
-\item{want_cityid}{TRUE/FALSE if you want to return a dataframe with a city_id column, in order to link it with the Data Warehouse. Default as FALSE}
+\item{want_cityid}{Logical. If \code{TRUE}, returns the data frame with an
+additional \code{city_id} column. Default is \code{TRUE}.}
 
-\item{threshold}{matching level}
+\item{threshold}{Numeric. Maximum Jaro-Winkler distance for matching.
+Lower values require closer matches. Default is 0.2.}
 }
 \value{
-If clean_city_name = FALSE, returns just comparisson between the current city column names and the C40 official city names in the Data Warehouse.
-If clean_city_name = TRUE, returns a dataframe with the correct and official city names
+A data frame with corrected city names in a new \code{corrected_city}
+  column. If \code{want_cityid = TRUE}, also includes \code{city_id}.
 }
 \description{
-Clean and correct city names
+Applies fuzzy string matching to correct city names against the official
+C40 city list. Useful for cleaning data from external sources with
+inconsistent city naming conventions.
+}
+\examples{
+\dontrun{
+valid_cities <- get_c40cities()$city
+corrected_data <- check_and_correct_cities(my_data, city_name, valid_cities)
+}
 }

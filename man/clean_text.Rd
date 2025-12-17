@@ -2,17 +2,24 @@
 % Please edit documentation in R/clean_text.R
 \name{clean_text}
 \alias{clean_text}
-\title{Clean text function:}
+\title{Clean text by removing accents and umlauts}
 \usage{
 clean_text(text)
 }
 \arguments{
-\item{text}{character value}
+\item{text}{Character vector to clean.}
+}
+\value{
+Character vector with accents and umlauts removed.
 }
 \description{
-Removes accents and umlaut from vowels. E.g.: "ÿÚòâ" into "yUoa".
+Removes accents and umlauts from vowels, converting them to their
+ASCII equivalents. Useful for standardising city names and other
+text data for matching purposes.
 }
 \examples{
-clean_text("ÿÚòâ") #"yuoa"
+clean_text("S\u00e3o Paulo")
+clean_text("M\u00e9xico")
+clean_text("Z\u00fcrich")
 
 }

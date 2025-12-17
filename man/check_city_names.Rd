@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_city_names.R
 \name{check_city_names}
 \alias{check_city_names}
-\title{Check if city column names matches with the C40 curated list of city names}
+\title{Check if city column names match the C40 curated list of city names}
 \usage{
 check_city_names(
   df,
@@ -12,18 +12,38 @@ check_city_names(
 )
 }
 \arguments{
-\item{df}{dataframe with the city column name}
+\item{df}{A data frame containing a column with city names.}
 
-\item{city_var_name}{name of the column wich has the city names}
+\item{city_var_name}{Character. Name of the column containing city names.}
 
-\item{clean_city_name}{TRUE/FALSE if you want to run a cleaning process for city names. Default as FALSE}
+\item{clean_city_name}{Logical. If \code{TRUE}, applies cleaning rules to
+standardise city names. Default is \code{FALSE}.}
 
-\item{want_cityid}{TRUE/FALSE if you want to return a dataframe with a city_id column, in order to link it with the Data Warehouse. Default as FALSE}
+\item{want_cityid}{Logical. If \code{TRUE}, returns the data frame with an
+additional \code{city_id} column for linking with the Data Warehouse.
+Default is \code{FALSE}.}
 }
 \value{
-If clean_city_name = FALSE, returns just comparisson between the current city column names and the C40 official city names in the Data Warehouse.
-If clean_city_name = TRUE, returns a dataframe with the correct and official city names
+If \code{clean_city_name = FALSE}, returns a comparison object
+  (from \code{waldo::compare}) showing differences between input city names
+  and official C40 city names. If \code{clean_city_name = TRUE}, returns the
+  input data frame with standardised city names.
 }
 \description{
-Check if city column names matches with the C40 curated list of city names
+Compares city names in a data frame against the official C40 city names
+from the Data Warehouse, with optional cleaning and ID matching.
+}
+\examples{
+\dontrun{
+# Compare city names against official list
+check_city_names(my_data, "city_name")
+
+# Clean and standardise city names
+cleaned_data <- check_city_names(my_data, "city_name", clean_city_name = TRUE)
+
+# Clean and add city_id for Data Warehouse linking
+cleaned_data <- check_city_names(my_data, "city_name",
+                                  clean_city_name = TRUE,
+                                  want_cityid = TRUE)
+}
 }

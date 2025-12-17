@@ -7,14 +7,26 @@
 get_c40cities(current = TRUE)
 }
 \arguments{
-\item{year}{TRUE as default, brings only current C40 cities. FALSE brings all C40 cities hosted in the Data Warehouse}
+\item{current}{Logical. If \code{TRUE} (default), returns only current C40
+member cities. If \code{FALSE}, returns all cities including past members.}
 }
 \value{
-A dataset with the City, City id and if it is currently part of C40
+A data frame with the following columns:
+\describe{
+  \item{city_id}{Integer. Unique identifier for the city in the Data Warehouse}
+  \item{city}{Character. Official name of the city}
+  \item{current_member}{Logical. Whether the city is currently a C40 member}
+}
 }
 \description{
-Get current and past C40 cities
+Retrieves the list of C40 member cities from the Data Warehouse.
 }
 \examples{
+\dontrun{
+# Get current C40 member cities
 df_c40_cities <- get_c40cities(current = TRUE)
+
+# Get all cities (including past members)
+df_all_cities <- get_c40cities(current = FALSE)
+}
 }

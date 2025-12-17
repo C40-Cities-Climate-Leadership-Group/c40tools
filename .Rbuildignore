@@ -4,3 +4,7 @@
 ^LICENSE\.md$
 ^README\.Rmd$
 ^\.github$
+^\.claude$
+^docs$
+^html_style$
+^style\.css$

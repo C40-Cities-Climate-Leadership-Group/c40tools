@@ -2,16 +2,21 @@
 % Please edit documentation in R/add_css.R
 \name{add_css}
 \alias{add_css}
-\title{Add document's css style parameters}
+\title{Add document's CSS style parameters}
 \usage{
 add_css()
 }
 \value{
-a style.css file
+Invisibly returns `NULL`. Called for its side effect of creating
+  a CSS file.
 }
 \description{
-Add document's css style parameters
+Creates a CSS file with C40 styling for HTML documents. The function
+generates a `style.css` file in an `html_style` folder and opens it
+for editing.
 }
 \examples{
+\dontrun{
 add_css()
+}
 }

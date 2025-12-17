@@ -2,23 +2,21 @@
 % Please edit documentation in R/round_up.R
 \name{round_up}
 \alias{round_up}
-\title{Round Up Function}
+\title{Round Up Function (Vectorized)}
 \usage{
 round_up(x, decimal_places = 1)
 }
 \arguments{
-\item{x}{A numeric value to be rounded.}
+\item{x}{A numeric value or vector to be rounded.}
 
 \item{decimal_places}{An integer specifying the number of decimal places to round up to. Default is 1.}
 }
 \value{
-A numeric value rounded up to the specified number of decimal places.
+A numeric value or vector rounded up to the specified number of decimal places.
 }
 \description{
-This function rounds a number up to a specified number of decimal places.
+This function rounds a numeric value or vector up to a specified number of decimal places.
 }
 \examples{
-round_up(1.35, 1)   # Returns 1.4
-round_up(-1.357, 2) # Returns -1.35
-round_up(2.363699, 2) # Returns 2.37
+round_up(c(1.35, -1.357, 2.363699), 2) # Returns c(1.4, -1.35, 2.37)
 }
