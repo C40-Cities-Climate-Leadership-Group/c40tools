@@ -58,6 +58,24 @@
 
 ---
 
+## Brand Guidelines Reference
+
+The official C40 brand guidelines are located at:
+- **Path:** `inst/brand/C40 Brand Guidelines September 2025.pdf`
+- **Access in R:** `system.file("brand", "C40 Brand Guidelines September 2025.pdf", package = "c40tools")`
+
+### When Working on Colour/Style Functions
+
+Before modifying or creating functions related to:
+- Colour palettes (`c40_pallets()`, `scale_fill_c40()`, `scale_color_c40()`)
+- Visual themes
+- Plot styling
+- Any brand-related visual elements
+
+**Always consult the brand guidelines** to ensure compliance with C40's visual identity standards.
+
+---
+
 ## Review Checklist
 
 When reviewing or generating code, ensure:
@@ -67,3 +85,4 @@ When reviewing or generating code, ensure:
 - [ ] Database connections closed with `on.exit()`
 - [ ] Functions use explicit namespace calls
 - [ ] Documentation is complete and accurate
+- [ ] Colour/style functions align with brand guidelines
