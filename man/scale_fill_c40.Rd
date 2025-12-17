@@ -2,13 +2,13 @@
 % Please edit documentation in R/scale_fill_c40.R
 \name{scale_fill_c40}
 \alias{scale_fill_c40}
-\title{C40 colour scale for filling}
+\title{C40 Colour Scale for Fill Aesthetics}
 \usage{
 scale_fill_c40(palette = "qualitative", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
-\item{palette}{Character. Palette name from \code{c40_pallets()}. Options are
-"qualitative", "sequential", "dicotomic", or "divergent".}
+\item{palette}{Character. Palette name from \code{\link{c40_palettes}()}.
+Options are "qualitative", "sequential", "dicotomic", or "divergent".}
 
 \item{discrete}{Logical. If \code{TRUE} (default), uses a discrete colour scale.
 If \code{FALSE}, uses a continuous gradient.}
@@ -33,4 +33,7 @@ ggplot(iris, aes(Species, Sepal.Width, fill = Species)) +
   scale_fill_c40()
 }
 
+}
+\seealso{
+\code{\link{scale_color_c40}}, \code{\link{c40_palettes}}
 }

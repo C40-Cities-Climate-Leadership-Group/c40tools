@@ -1,9 +1,9 @@
-#' C40 colour scale for filling
+#' C40 Colour Scale for Fill Aesthetics
 #'
 #' A ggplot2 scale function that applies C40 colour palettes to fill aesthetics.
 #'
-#' @param palette Character. Palette name from \code{c40_pallets()}. Options are
-#'   "qualitative", "sequential", "dicotomic", or "divergent".
+#' @param palette Character. Palette name from \code{\link{c40_palettes}()}.
+#'   Options are "qualitative", "sequential", "dicotomic", or "divergent".
 #' @param discrete Logical. If \code{TRUE} (default), uses a discrete colour scale.
 #'   If \code{FALSE}, uses a continuous gradient.
 #' @param reverse Logical. If \code{TRUE}, reverses the palette order.
@@ -21,10 +21,12 @@
 #'   scale_fill_c40()
 #' }
 #'
+#' @seealso \code{\link{scale_color_c40}}, \code{\link{c40_palettes}}
+#'
 #' @export
 scale_fill_c40 <- function(palette = "qualitative", discrete = TRUE, reverse = FALSE, ...) {
 
-  pal <- c40_pallets(palette = palette, reverse = reverse)
+  pal <- c40_palettes(palette = palette, reverse = reverse)
 
   if (discrete) {
     ggplot2::discrete_scale(

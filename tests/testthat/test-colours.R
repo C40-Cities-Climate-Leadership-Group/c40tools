@@ -39,27 +39,52 @@ test_that("c40_colors accepts numeric indices", {
   expect_equal(c40_colors(2), c40_colors("blue"))
 })
 
-test_that("c40_pallets returns a function", {
- pal <- c40_pallets("qualitative")
- expect_type(pal, "closure")
+# Tests for c40_palettes (new correct spelling)
+test_that("c40_palettes returns a function", {
+  pal <- c40_palettes("qualitative")
+  expect_type(pal, "closure")
 })
 
-test_that("c40_pallets works with all palette names", {
- expect_type(c40_pallets("qualitative"), "closure")
- expect_type(c40_pallets("sequential"), "closure")
- expect_type(c40_pallets("dicotomic"), "closure")
- expect_type(c40_pallets("divergent"), "closure")
+test_that("c40_palettes works with all palette names", {
+  expect_type(c40_palettes("qualitative"), "closure")
+  expect_type(c40_palettes("sequential"), "closure")
+  expect_type(c40_palettes("dicotomic"), "closure")
+  expect_type(c40_palettes("divergent"), "closure")
 })
 
-test_that("c40_pallets reverse option works", {
- pal_normal <- c40_pallets("qualitative", reverse = FALSE)
- pal_reversed <- c40_pallets("qualitative", reverse = TRUE)
+test_that("c40_palettes reverse option works", {
+  pal_normal <- c40_palettes("qualitative", reverse = FALSE)
+  pal_reversed <- c40_palettes("qualitative", reverse = TRUE)
 
- # Generate colours and check they are different
- colours_normal <- pal_normal(3)
- colours_reversed <- pal_reversed(3)
+  # Generate colours and check they are different
+  colours_normal <- pal_normal(3)
+  colours_reversed <- pal_reversed(3)
 
- expect_false(identical(colours_normal, colours_reversed))
+  expect_false(identical(colours_normal, colours_reversed))
+})
+
+test_that("c40_palettes errors on invalid palette name", {
+  expect_error(c40_palettes("invalid_palette"))
+})
+
+test_that("c40_palettes generates correct number of colours", {
+  pal <- c40_palettes("qualitative")
+  expect_length(pal(5), 5)
+  expect_length(pal(10), 10)
+})
+
+# Tests for deprecated c40_pallets
+test_that("c40_pallets shows deprecation warning", {
+  expect_warning(
+    c40_pallets("qualitative"),
+    "c40_pallets\\(\\) is deprecated"
+  )
+})
+
+test_that("c40_pallets still works despite deprecation", {
+  pal <- suppressWarnings(c40_pallets("qualitative"))
+  expect_type(pal, "closure")
+  expect_length(pal(5), 5)
 })
 
 test_that("scale_color_c40 returns a ggplot2 scale", {
